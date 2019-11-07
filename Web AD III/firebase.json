@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target" : "WebAdmin",
     "public": "public",
     "ignore": [
       "firebase.json",
