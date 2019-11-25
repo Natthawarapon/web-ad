@@ -45,59 +45,15 @@
 
 <body class="animsition">
     <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
-            <div class="header-mobile__bar">
-                <div class="container-fluid">
-                    <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            
-                        </a>
-                        <button class="hamburger hamburger--slider" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <nav class="navbar-mobile">
-                <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
-                        <li class="has-sub">
-                            <a class="js-arrow" href="index.html">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li>
-                        <li>
-                            <a href="review.html">
-                                <i class="fas fa-clone"></i>Review</a>
-                        </li>
-                        <li>
-                            <a href="inbox.html">
-                                <i class="fas fa-comments"></i>Messenger
-                            </a>
-                        </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-chart-line"></i>Table
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- END HEADER MOBILE-->
 
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo" > 
-                <div style="width: 35px; height: 35px;"> <img src="https://www.coolheadtech.com/hs-fs/hub/189007/file-526634248-png/google-apps-admin-panel-icon.png?width=225&name=google-apps-admin-panel-icon.png" alt=""></div>
-               <br>
-               <div>&nbsp;&nbsp; FIX Admin</div>
+            <div class="logo">
+                <div style="width: 35px; height: 35px;"> <img
+                        src="https://www.coolheadtech.com/hs-fs/hub/189007/file-526634248-png/google-apps-admin-panel-icon.png?width=225&name=google-apps-admin-panel-icon.png"
+                        alt=""></div>
+                <br>
+                <div>&nbsp;&nbsp; FIX Admin</div>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
@@ -108,7 +64,14 @@
                         </li>
                         <li>
                             <a href="table.html">
-                                <i class="fas fa-chart-line"></i>Table
+                                <i class="fas fa-chart-line"></i>
+                                Repair Stores
+                            </a>
+                        </li>
+                        <li>
+                            <a href="customer.html">
+                                <i class="fas fa-chart-line"></i>
+                                Customers
                             </a>
                         </li>
                     </ul>
@@ -135,7 +98,7 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                                <img src="images/icon/admin.png" alt="" />
+                                            <img src="images/icon/admin.png" alt="" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">Administrator</a>
@@ -165,8 +128,8 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer" onclick="logout()">
-                                                   <a href="login.html"><i class="zmdi zmdi-power" ></i>Logout</a>
-                                                    
+                                                <a href="login.html"><i class="zmdi zmdi-power"></i>Logout</a>
+
                                             </div>
                                         </div>
                                     </div>
@@ -187,7 +150,7 @@
                                 <div class="overview-wrap">
                                     <h2 class="title-1">overview</h2>
                                     <button class="au-btn au-btn-icon au-btn--blue">
-                                       <!-- <i class="zmdi zmdi-plus"></i>add item</button> -->
+                                        <!-- <i class="zmdi zmdi-plus"></i>add item</button> -->
                                 </div>
                             </div>
                         </div>
@@ -214,14 +177,14 @@
                                 <div class="overview-item overview-item--c2">
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
-                                          
-                                            <div class="icon" >
-                                                <i class="zmdi zmdi-shopping-cart"></i> 
-                                               
+
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-shopping-cart"></i>
+
                                             </div>
                                             <div class="text">
-                                              <h2 id="store"></h2>
-                                            
+                                                <h2 id="store"></h2>
+
                                                 <span>Stores All</span>
                                             </div>
                                         </div>
@@ -268,83 +231,85 @@
                                 </div>
                             </div>
                         </div>
-                         
-    </div>
-    <script>
-  var firebaseConfig = {
-            apiKey: "AIzaSyB6QMhAaE3oktdyy8deswQNQIw4cwPq-W4",
-            authDomain: "fixit-app-e3546.firebaseapp.com",
-            databaseURL: "https://fixit-app-e3546.firebaseio.com",
-            projectId: "fixit-app-e3546",
-            storageBucket: "fixit-app-e3546.appspot.com",
-            messagingSenderId: "139817871220",
-            appId: "1:139817871220:web:b634b75fb562dcd2"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        var firestore = firebase.firestore();
-     
-        firestore.collection("Technicians").get().then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-            
-             
-        
-            });
-            document.getElementById("store").innerHTML = querySnapshot.size;
-                console.log(querySnapshot.size);
-        });
 
-        firestore.collection("Users").get().then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-            
-             
-        
-            });
-            document.getElementById("customer").innerHTML = querySnapshot.size;
-                console.log(querySnapshot.size);
-        });
+                    </div>
+                    <script>
+                        var firebaseConfig = {
+                            apiKey: "AIzaSyB6QMhAaE3oktdyy8deswQNQIw4cwPq-W4",
+                            authDomain: "fixit-app-e3546.firebaseapp.com",
+                            databaseURL: "https://fixit-app-e3546.firebaseio.com",
+                            projectId: "fixit-app-e3546",
+                            storageBucket: "fixit-app-e3546.appspot.com",
+                            messagingSenderId: "139817871220",
+                            appId: "1:139817871220:web:b634b75fb562dcd2"
+                        };
+                        // Initialize Firebase
+                        firebase.initializeApp(firebaseConfig);
+                        var firestore = firebase.firestore();
+                        
+                        firestore.collection("Technicians").get().then(function (querySnapshot) {
+                            querySnapshot.forEach(function (doc) {
+                                // doc.data() is never undefined for query doc snapshots
+                                console.log(doc.id, " => ", doc.data());
 
-        firestore.collection("requestFix").get().then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-            
-             
-        
-            });
-            document.getElementById("listfix").innerHTML = querySnapshot.size;
-                console.log(querySnapshot.size);
-        });
-        </script>
-        
-    <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js">
-    </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js">
-    </script>
 
-    <!-- Main JS-->
-    <script src="js/main.js"></script>
-    <script src="js/logout.js"></script>
+
+                            });
+                            document.getElementById("store").innerHTML = querySnapshot.size;
+                            console.log(querySnapshot.size);
+                        });
+
+                        firestore.collection("Users").get().then(function (querySnapshot) {
+                            querySnapshot.forEach(function (doc) {
+                                // doc.data() is never undefined for query doc snapshots
+                                console.log(doc.id, " => ", doc.data());
+
+
+
+                            });
+                            document.getElementById("customer").innerHTML = querySnapshot.size;
+                            console.log(querySnapshot.size);
+                        });
+
+                        firestore.collection("requestFix").get().then(function (querySnapshot) {
+                            querySnapshot.forEach(function (doc) {
+                                // doc.data() is never undefined for query doc snapshots
+                                console.log(doc.id, " => ", doc.data());
+
+
+
+                            });
+                            document.getElementById("listfix").innerHTML = querySnapshot.size;
+                            console.log(querySnapshot.size);
+                        });
+
+
+                    </script>
+
+                    <!-- Jquery JS-->
+                    <script src="vendor/jquery-3.2.1.min.js"></script>
+                    <!-- Bootstrap JS-->
+                    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+                    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+                    <!-- Vendor JS       -->
+                    <script src="vendor/slick/slick.min.js">
+                    </script>
+                    <script src="vendor/wow/wow.min.js"></script>
+                    <script src="vendor/animsition/animsition.min.js"></script>
+                    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+                    </script>
+                    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+                    <script src="vendor/counter-up/jquery.counterup.min.js">
+                    </script>
+                    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+                    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+                    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+                    <script src="vendor/select2/select2.min.js">
+                    </script>
+
+                    <!-- Main JS-->
+                    <script src="js/main.js"></script>
+                    <script src="js/logout.js"></script>
 
 </body>
 

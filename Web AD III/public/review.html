@@ -30,12 +30,12 @@
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
-    
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
-    
+
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
 
@@ -43,62 +43,11 @@
 
 <body class="animsition">
     <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
-            <div class="header-mobile__bar">
-                <div class="container-fluid">
-                    <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                                <div style="width: 35px; height: 35px;"> <img
-                                    src="https://www.coolheadtech.com/hs-fs/hub/189007/file-526634248-png/google-apps-admin-panel-icon.png?width=225&name=google-apps-admin-panel-icon.png"
-                                    alt=""></div>
-                            <br>
-                            <div>&nbsp;&nbsp; FIX Admin</div>
-                        </a>
-                        <button class="hamburger hamburger--slider" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <nav class="navbar-mobile">
-                <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
-                        <li>
-                            <a class="js-arrow" href="index.html">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li>
-                        <li class="has-sub">
-                            <a href="review.html">
-                                <i class="fas fa-clone"></i>Review
-                            </a>
-                        </li>
-                        <li>
-                            <a href="inbox.html">
-                                <i class="fas fa-comments"></i>Messenger
-                            </a>
-                        </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-chart-line"></i>Table
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- END HEADER MOBILE-->
-
+        
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                    <div style="width: 35px; height: 35px;"> <img
+                <div style="width: 35px; height: 35px;"> <img
                         src="https://www.coolheadtech.com/hs-fs/hub/189007/file-526634248-png/google-apps-admin-panel-icon.png?width=225&name=google-apps-admin-panel-icon.png"
                         alt=""></div>
                 <br>
@@ -111,23 +60,17 @@
                             <a class="js-arrow" href="index.html">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <!-- <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li> -->
-                       
-                        <!-- <li>
-                            <a href="inbox.html">
-                                <i class="fas fa-comments"></i>Messenger
-                            </a>
-                        </li> -->
                         <li>
                             <a href="table.html">
-                                <i class="fas fa-chart-line"></i>Table
+                                <i class="fas fa-chart-line"></i>Repair Stores
                             </a>
-                        </li> 
-
                         </li>
+                        <li>
+                            <a href="customer.html">
+                                <i class="fas fa-chart-line"></i>Customers
+                            </a>
+                        </li>
+
                     </ul>
                 </nav>
             </div>
@@ -152,7 +95,7 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                                <img src="images/icon/admin.png" alt="" />
+                                            <img src="images/icon/admin.png" alt="" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">Administrator</a>
@@ -161,7 +104,7 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                            <img src="images/icon/admin.png" alt="" />
+                                                        <img src="images/icon/admin.png" alt="" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -182,8 +125,8 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                    <a href="">
-                                                    <i class="zmdi zmdi-power" onclick="logout()" ></i>Logout</a>
+                                                <a href="">
+                                                    <i class="zmdi zmdi-power" onclick="logout()"></i>Logout</a>
                                             </div>
                                         </div>
                                     </div>
@@ -195,87 +138,138 @@
             </header>
             <!-- HEADER DESKTOP-->
 
-<!-- MAIN CONTENT-->
-<div class="main-content">
-    <div class="section__content section__content--p30">
-            <div class="container">
-                    <h2 class="">Review :: </h2>
-                    <br>
-                    <div id="showreview"></div>
-                   
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container">
+                        <h3 class="" id="namestorereview"> </h3>
+                        <script>
+                            var namestore = localStorage.getItem("namestore");
+                            document.getElementById("namestorereview").innerHTML = "  " + namestore 
+                        </script>
+                        <div align="right"><button id="btnaccept" onclick="display()" type="button" class="btn btn-outline-danger">
+                            <i class="fas fa-ban"></i> BanStore</button></div>
+                        
+                        <div class="row m-t-30">
+                            <h3 class="title-5 m-b-35">&nbsp; &nbsp; Repair list</h3>
+                            <div class="col-md-12">
+                                <!-- DATA TABLE-->
+                                <div class="table-responsive m-b-40">
+                                    <table class="table table-borderless table-data3">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>customer</th>
+                                                <th>repair list</th>
+                                                <th>status</th>
+                                                <th>reviewtext</th>
+                                                <th>rating</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="showlist">
 
-</div>
-</div>
-<!-- END PAGE CONTAINER-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- END DATA TABLE-->
+                            </div>
+                        </div>
 
-    </div>
-<script>
-      var firebaseConfig = {
-            apiKey: "AIzaSyB6QMhAaE3oktdyy8deswQNQIw4cwPq-W4",
-            authDomain: "fixit-app-e3546.firebaseapp.com",
-            databaseURL: "https://fixit-app-e3546.firebaseio.com",
-            projectId: "fixit-app-e3546",
-            storageBucket: "fixit-app-e3546.appspot.com",
-            messagingSenderId: "139817871220",
-            appId: "1:139817871220:web:b634b75fb562dcd2"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        var firestore = firebase.firestore();
-    var namestore = localStorage.getItem("namestore");
+                    </div>
+                </div>
+                <!-- END PAGE CONTAINER-->
 
- firestore.collection("Technicians").doc(namestore).collection('review').get().then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-                $('#showreview').append(
-                '<div class="card">'+
-                        '<div class="card-body">'+
-                            '<div class="row" >'+
-                                '<div class="col-md-1 center" id="logo">'+
-                                   ' <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid imguser"/>'+
-                                '</div>'+
-                                '<div class="col-md-11">'+
-                                    '<p>'+
-                                        '<a class="float-left" href="#"><strong>'+doc.data().customer+'</strong></a>'+
-                                        '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
-                                        '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
-                                        '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
-                                        '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
-                
-                                  ' </p>'+
-                                   '<div class="clearfix"></div>'+
-                                    '<p>'+doc.data().reviewtext+'</p>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>'
+            </div>
+            <script>
+                var firebaseConfig = {
+                    apiKey: "AIzaSyB6QMhAaE3oktdyy8deswQNQIw4cwPq-W4",
+                    authDomain: "fixit-app-e3546.firebaseapp.com",
+                    databaseURL: "https://fixit-app-e3546.firebaseio.com",
+                    projectId: "fixit-app-e3546",
+                    storageBucket: "fixit-app-e3546.appspot.com",
+                    messagingSenderId: "139817871220",
+                    appId: "1:139817871220:web:b634b75fb562dcd2"
+                };
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+                var firestore = firebase.firestore();
+                var namestore = localStorage.getItem("namestore");
+
+                firestore.collection("Technicians").doc(namestore).collection('review').get().then(function (querySnapshot) {
+                    querySnapshot.forEach(function (doc) {
+                        // doc.data() is never undefined for query doc snapshots
+                        console.log(doc.id, " => ", doc.data());
+
+                        $('#showlist').append(
+                            '<tr class="tr-shadow">' +
+                            '<td>' +
+                            '</td>' +
+                            ' <td>' + doc.data().customer + '</td>' +
+                            ' <td class="desc">' +
+                            '<span>' + '</span>' +
+                            ' </td>' +
+                            '<td>' + +
+                            '<span class="status--process">Approve</span>' +
+                            '</td>' +
+                            ' <td>' + '<p>' + doc.data().reviewtext + '</p>' + '</td>' +
+                            '<td>' + doc.data().rating +
+                            '</td>' +
+                            ' </tr>' +
+                            ' <tr class="spacer"></tr>'
+
                         )
-            });
-        });
-</script>
-    <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js">
-    </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js">
-    </script>
+                    });
+                });
 
-    <!-- Main JS-->
-    <script src="js/main.js"></script>
+
+                function display() {
+                        var namestore_get = localStorage.getItem("namestore");
+                        var el = document.getElementById('btnaccept');
+                        if (el.value == "Accept") {
+                            el.value = "Accepted";
+                            var firestoreRef = firestore.collection("Technicians").doc(namestore_get)
+                            var updateStatus = firestoreRef.update({
+                                display: "normal"
+                            });
+                            console.log(' normal ');
+
+                        } else {
+                            el.value = "Accept";
+                            var firestoreRef = firestore.collection("Technicians").doc(namestore_get)
+                            var updateStatus = firestoreRef.update({
+                                display: "warning"
+                            });
+                            console.log(' warning ');
+
+                        }
+                    
+                }
+
+            </script>
+            <!-- Jquery JS-->
+            <script src="vendor/jquery-3.2.1.min.js"></script>
+            <!-- Bootstrap JS-->
+            <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+            <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+            <!-- Vendor JS       -->
+            <script src="vendor/slick/slick.min.js">
+            </script>
+            <script src="vendor/wow/wow.min.js"></script>
+            <script src="vendor/animsition/animsition.min.js"></script>
+            <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+            </script>
+            <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+            <script src="vendor/counter-up/jquery.counterup.min.js">
+            </script>
+            <script src="vendor/circle-progress/circle-progress.min.js"></script>
+            <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+            <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+            <script src="vendor/select2/select2.min.js">
+            </script>
+
+            <!-- Main JS-->
+            <script src="js/main.js"></script>
+            <script src="js/logout.js"></script>
 
 </body>
 

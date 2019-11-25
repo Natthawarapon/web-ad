@@ -41,54 +41,7 @@
 
 <body class="animsition">
     <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
-            <div class="header-mobile__bar">
-                <div class="container-fluid">
-                    <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-
-
-                        </a>
-                        <button class="hamburger hamburger--slider" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <nav class="navbar-mobile">
-                <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
-                        <li>
-                            <a class="js-arrow" href="index.html">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li>
-                        <li>
-                            <a href="review.html">
-                                <i class="fas fa-clone"></i>Review</a>
-                        </li>
-                        <li>
-                            <a href="inbox.html">
-                                <i class="fas fa-comments"></i>Messenger
-                            </a>
-                        </li>
-                        <li class="has-sub">
-                            <a href="table.html">
-                                <i class="fas fa-chart-line"></i>Table
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- END HEADER MOBILE-->
-
+        
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
@@ -107,7 +60,13 @@
                         </li>
                         <li class="active has-sub">
                             <a href="table.html">
-                                <i class="fas fa-chart-line"></i>Table
+                                <i class="fas fa-chart-line"></i>Repair Stores
+                            </a>
+                        </li>
+                        <li>
+                            <a href="customer.html">
+                                <i class="fas fa-chart-line"></i>
+                                Customers
                             </a>
                         </li>
                     </ul>
@@ -115,7 +74,7 @@
             </div>
         </aside>
         <!-- END MENU SIDEBAR-->
- เ่ัีาาา
+
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
@@ -183,14 +142,12 @@
                     <div class="col-md-12">
                         <!-- DATA TABLE -->
                         <h3 class="title-5 m-b-35">&nbsp; data mechanics</h3>
-                      
+
                         <div class="table-responsive table-responsive-data2">
                             <table class="table table-data3">
                                 <thead>
                                     <tr>
-                                        <th>
-
-                                        </th>
+                                        <th></th>
                                         <th>namestore</th>
                                         <th>email</th>
                                         <th>address</th>
@@ -198,9 +155,9 @@
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody  id="showstore" >
-                                       
-                    
+                                <tbody id="showstore">
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -208,28 +165,6 @@
                     </div>
                 </div>
 
-                <div class="row m-t-30">
-                    <h3 class="title-5 m-b-35">&nbsp; &nbsp; Repair list</h3>
-                    <div class="col-md-12">
-                        <!-- DATA TABLE-->
-                        <div class="table-responsive m-b-40">
-                            <table class="table table-borderless table-data3">
-                                <thead>
-                                    <tr>
-                                            <th>namestore</th>
-                                            <th>email</th>
-                                            <th>address</th>
-                                            <th>more...</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                </tbody>
-                            </table  > 
-                        </div>
-                        <!-- END DATA TABLE-->
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -258,60 +193,40 @@
                 console.log(doc.id, " => ", doc.data());
 
                 $('#showstore').append(
-                    // '<tr>'+
-                    //     '<td>'+ doc.data().namestore+'</td>'+
-                    //    ' <td>'+doc.data().email+'</td>'+
-                    //     '<td>'+doc.data().address+'</td>'+
-                    // '</tr>'
-                   
-                    '<tr class="tr-shadow">'+
-                                        '<td>'+
 
-                                        '</td>'+
-                                       ' <td>'+doc.data().namestore+'</td>'+
-                                       ' <td class="desc">'+
-                                            '<span>'+doc.data().email+'</span>'+
-                                       ' </td>'+
-                                       ' <td>'+doc.data().address+'</td>'+
-                                        '<td>'+
-                                            '<span class="status--process">Accept</span>'+
-                                        '</td>'+
-
-                                        '<td>'+
-                                            '<div class="table-data-feature">'+
-                                            //   '  <button class="item" data-toggle="tooltip" data-placement="top"title="Send">'+
-                                            //        ' <i class="zmdi zmdi-mail-send"></i>'+
-                                            //    ' </button>'+
-                                            //     '<button class="item" data-toggle="tooltip" data-placement="top"title="ban">'+
-                                            //         '<i class="fas fa-ban"></i>'+
-                                            //    ' </button>'+
-                                                '<button class="item" data-toggle="tooltip" data-placement="top"title="Repair list" onclick="RepairList(' + "'"+doc.data().namestore+ "'" +')">'+
-                                                    '<i class="far fa-file-alt"></i> </i>'+
-                                                '</button>'+
-                                               ' <button class="item" data-toggle="tooltip" data-placement="top"title="More">'+
-                                                    '<i class="zmdi zmdi-more"></i>'+
-                                                '</button>'+
-                                            '</div>'+
-                                        '</td>'+
-                                   ' </tr>'+
-                                   ' <tr class="spacer"></tr>'
-                                  
+                    '<tr class="tr-shadow">' +
+                    '<td>' +
+                    '</td>' +
+                    ' <td>' + doc.data().namestore + '</td>' +
+                    ' <td class="desc">' +
+                    '<span>' + doc.data().email + '</span>' +
+                    ' </td>' +
+                    ' <td>' + doc.data().address + '</td>' +
+                    '<td>' +
+                    '<span class="status--process">' +doc.data().display + '</span>' +
+                    '</td>' +
+                    '<td>' +
+                    '<div class="table-data-feature">' +
+                    '<button class="item" data-toggle="tooltip" data-placement="top"title="Repair list" onclick="RepairList(' + "'" + doc.data().namestore + "'" + ')">' +
+                    '<i class="far fa-file-alt"></i> </i>' +
+                    '</div>' +
+                    '</td>' +
+                    ' </tr>' +
+                    ' <tr class="spacer"></tr>'
                 )
             });
         });
- 
-        function RepairList(namestore) {
-            var store =namestore ;
-            firestore.collection("Technicians").where("namestore", "==", store).get().then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-                window.location.href ="review.html"           
-                localStorage.setItem('namestore',store);
-            });
-        });
 
-            
+        function RepairList(namestore) {
+            var store = namestore;
+            firestore.collection("Technicians").where("namestore", "==", store).get().then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    // doc.data() is never undefined for query doc snapshots
+                    console.log(doc.id, " => ", doc.data());
+                    window.location.href = "review.html"
+                    localStorage.setItem('namestore', store);
+                });
+            });
         }
 
     </script>
