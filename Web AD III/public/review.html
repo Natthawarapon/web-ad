@@ -38,12 +38,18 @@
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
-
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
 </head>
 
 <body class="animsition">
     <div class="page-wrapper">
-        
+
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
@@ -57,17 +63,8 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li>
-                            <a class="js-arrow" href="index.html">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>
-                        <li>
                             <a href="table.html">
                                 <i class="fas fa-chart-line"></i>Repair Stores
-                            </a>
-                        </li>
-                        <li>
-                            <a href="customer.html">
-                                <i class="fas fa-chart-line"></i>Customers
                             </a>
                         </li>
 
@@ -84,13 +81,6 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search"
-                                    placeholder="Search for datas &amp; reports..." />
-                                <button class="au-btn--submit" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                            </form>
                             <div class="header-button">
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
@@ -111,7 +101,7 @@
                                                     <h5 class="name">
                                                         <a href="#">Administrator</a>
                                                     </h5>
-                                                    <span class="email">administrator@example.com</span>
+                                                    <span class="email">admin@gmail.com</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -139,17 +129,19 @@
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
-            <div class="main-content">
+            <div class="main-content" style="background-color: rgb(233, 232, 232);">
                 <div class="section__content section__content--p30">
                     <div class="container">
-                        <h3 class="" id="namestorereview"> </h3>
+                        <h3 class="center" id="namestorereview" style="text-align: center; font-size: 40px;"></h3>
                         <script>
                             var namestore = localStorage.getItem("namestore");
                             document.getElementById("namestorereview").innerHTML = "  " + namestore 
                         </script>
-                        <div align="right"><button id="btnaccept" onclick="display()" type="button" class="btn btn-outline-danger">
-                            <i class="fas fa-ban"></i> BanStore</button></div>
-                        
+                        <br>
+                        <!-- <div  style="color: black;"><h3 id="status">status : warning</h3></div> -->
+                        <div align="right"><button id="btnaccept" onclick="display()" type="button"
+                                class="btn btn-outline-danger">Suspend</button></div>
+
                         <div class="row m-t-30">
                             <h3 class="title-5 m-b-35">&nbsp; &nbsp; Repair list</h3>
                             <div class="col-md-12">
@@ -161,7 +153,7 @@
                                                 <th>Date</th>
                                                 <th>customer</th>
                                                 <th>repair list</th>
-                                                <th>status</th>
+                                              
                                                 <th>reviewtext</th>
                                                 <th>rating</th>
                                             </tr>
@@ -202,15 +194,13 @@
 
                         $('#showlist').append(
                             '<tr class="tr-shadow">' +
-                            '<td>' +
+                            '<td>' +doc.data().dateTime+
                             '</td>' +
                             ' <td>' + doc.data().customer + '</td>' +
                             ' <td class="desc">' +
-                            '<span>' + '</span>' +
+                            '<span>' + doc.data().fixID +'</span>' +
                             ' </td>' +
-                            '<td>' + +
-                            '<span class="status--process">Approve</span>' +
-                            '</td>' +
+                         
                             ' <td>' + '<p>' + doc.data().reviewtext + '</p>' + '</td>' +
                             '<td>' + doc.data().rating +
                             '</td>' +
@@ -221,29 +211,53 @@
                     });
                 });
 
-
                 function display() {
-                        var namestore_get = localStorage.getItem("namestore");
-                        var el = document.getElementById('btnaccept');
-                        if (el.value == "Accept") {
-                            el.value = "Accepted";
-                            var firestoreRef = firestore.collection("Technicians").doc(namestore_get)
-                            var updateStatus = firestoreRef.update({
-                                display: "normal"
-                            });
-                            console.log(' normal ');
+                    var namestore_get = localStorage.getItem("namestore");
+                    var el = document.getElementById('btnaccept');
 
-                        } else {
-                            el.value = "Accept";
-                            var firestoreRef = firestore.collection("Technicians").doc(namestore_get)
-                            var updateStatus = firestoreRef.update({
-                                display: "warning"
-                            });
-                            console.log(' warning ');
 
-                        }
-                    
+                    if (el.value == "Accept") {
+                        document.getElementById('btnaccept').innerHTML = "Suspend"
+                        el.value = "Accepted";
+
+                        var firestoreRef = firestore.collection("Technicians").doc(namestore_get)
+                        var updateStatus = firestoreRef.update({
+                            display: "normal"
+                        }).then;
+                        console.log(' normal ');
+
+
+                    } else {
+                        document.getElementById('btnaccept').innerHTML = "Unsuspend"
+                        el.value = "Accept";
+
+                        var firestoreRef = firestore.collection("Technicians").doc(namestore_get)
+                        var updateStatus = firestoreRef.update({
+                            display: "warning"
+                        });
+                        console.log(' warning ');
+                        Swal.fire({
+                            title: 'Do you want to suspend the store ?',
+                            text: "Do you want to suspend : " + localStorage.getItem("namestore") + " ?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ok !'
+                        }).then((result) => {
+                            if (result.value) {
+                                Swal.fire(
+                                    'Suspend Store : ' + localStorage.getItem("namestore"),
+                                    'Suspend! Complete',
+                                    'success'
+                                )
+                            }
+                        })
+
+                    }
+
                 }
+
 
             </script>
             <!-- Jquery JS-->
